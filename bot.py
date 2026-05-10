@@ -16,6 +16,7 @@ from pathlib import Path
 
 import scraper
 import trader
+import notify
 
 # ---------------------------------------------------------------------------
 # Setup
@@ -139,6 +140,34 @@ def run() -> None:
         except Exception as exc:
             log.error("Order failed for %s %s: %s", action, ticker, exc)
             result = {"status": "error", "error": str(exc)}
+
+        # Send Telegram notification
+        status = result.get("status", "unknown")
+        if status == "error":
+            emoji = "❌"
+            msg = (
+                f"{emoji} <b>Trade FAILED</b>\n"
+                f"Tim Moore: {action.upper()} {ticker}\n"
+                f"Error: {result.get('error', 'unknown')}"
+            )
+        elif status == "skipped":
+            emoji = "⏭"
+            msg = (
+                f"{emoji} <b>Trade Skipped</b>\n"
+                f"Tim Moore: SELL {ticker}\n"
+                f"Reason: no position held"
+            )
+        else:
+            emoji = "📈" if action == "buy" else "📉"
+            label = f"BUY ${trade_amount:.0f}" if action == "buy" else "SELL (full position)"
+            msg = (
+                f"{emoji} <b>Trade Copied!</b>\n"
+                f"Politician: Tim Moore (R-NC)\n"
+                f"Action: {label} <b>{ticker}</b>\n"
+                f"Filed: {trade['filed_date'].strftime('%Y-%m-%d')}\n"
+                f"Status: {status}"
+            )
+        notify.send(msg)
 
         # Record what we did
         processed_ids.append(trade_id)
