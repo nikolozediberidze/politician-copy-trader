@@ -4,15 +4,24 @@
     "api_key": "PK3S2I5WJO5Q4NF2X2YDLXRIPR",
     "api_secret": "5uXdAaM1GwUn5ktcCsqWqsjrN58JRWqpoh19vx3pqmXn"
   },
-  "target": {
-    "name": "Tim Moore",
-    "politician_id": "M001236",
-    "party": "Republican",
-    "state": "NC",
-    "note": "52% gain in 2025 with 200+ trades \u00e2\u20ac\u201d most active Congress trader"
-  },
+  "targets": [
+    {
+      "name": "Tim Moore",
+      "politician_id": "M001236",
+      "party": "Republican",
+      "state": "NC",
+      "note": "52% gain in 2025, 230+ trades — most active Congress trader"
+    },
+    {
+      "name": "Terri Sewell",
+      "politician_id": "S001185",
+      "party": "Democrat",
+      "state": "AL",
+      "note": "67.9% gain in 2025 — highest return in Congress, tech-focused"
+    }
+  ],
   "trading": {
-    "trade_amount_usd": 500,
+    "trade_amount_usd": 100,
     "days_lookback": 7,
     "dry_run": false
   }

@@ -1,10 +1,10 @@
 """
 Politician Copy Trading Bot
-Target: Tim Moore (M001236) — Republican, NC — 52% gain in 2025
+Targets: Tim Moore (M001236) + Terri Sewell (S001185)
 
-Run this script on a schedule (every 30 min via Windows Task Scheduler).
-It checks for new Tim Moore trades on Capitol Trades, copies them via Alpaca paper account.
-State is persisted in state.json to avoid double-trading.
+Runs every 30 min via GitHub Actions (Mon-Fri).
+Checks Capitol Trades, copies new trades to Alpaca paper account.
+Sends Telegram notifications on every check and every trade.
 """
 
 import json
@@ -17,10 +17,6 @@ from pathlib import Path
 import scraper
 import trader
 import notify
-
-# ---------------------------------------------------------------------------
-# Setup
-# ---------------------------------------------------------------------------
 
 BASE_DIR = Path(__file__).parent
 CONFIG_FILE = BASE_DIR / "config.json"
@@ -55,10 +51,6 @@ def save_state(state: dict) -> None:
         json.dump(state, f, indent=2, default=str)
 
 
-# ---------------------------------------------------------------------------
-# Main loop (single run — schedule externally)
-# ---------------------------------------------------------------------------
-
 def run() -> None:
     log.info("=" * 60)
     log.info("Politician Copy Trader  —  %s", datetime.now().strftime("%Y-%m-%d %H:%M"))
@@ -67,17 +59,16 @@ def run() -> None:
     state = load_state()
 
     alpaca_cfg = cfg["alpaca"]
-    target = cfg["target"]
+    targets = cfg["targets"]
     trading_cfg = cfg["trading"]
 
-    # Environment variables override config (used by GitHub Actions secrets)
     if os.environ.get("ALPACA_API_KEY"):
         alpaca_cfg["api_key"] = os.environ["ALPACA_API_KEY"]
     if os.environ.get("ALPACA_API_SECRET"):
         alpaca_cfg["api_secret"] = os.environ["ALPACA_API_SECRET"]
 
     dry_run: bool = os.environ.get("DRY_RUN", "").lower() == "true" or trading_cfg.get("dry_run", False)
-    trade_amount: float = float(os.environ.get("TRADE_AMOUNT_USD", trading_cfg.get("trade_amount_usd", 500)))
+    trade_amount: float = float(os.environ.get("TRADE_AMOUNT_USD", trading_cfg.get("trade_amount_usd", 100)))
     days_back: int = int(trading_cfg.get("days_lookback", 7))
 
     if dry_run:
@@ -86,7 +77,6 @@ def run() -> None:
     # --- Alpaca client ---
     client = trader.make_client(alpaca_cfg["api_key"], alpaca_cfg["api_secret"])
 
-    # Bail out if market is closed (no point placing orders)
     if not dry_run and not trader.is_market_open(client):
         log.info("Market is closed — skipping this run.")
         state["last_checked"] = datetime.now().isoformat()
@@ -99,92 +89,106 @@ def run() -> None:
         summary["equity"], summary["cash"], summary["buying_power"],
     )
 
-    if summary["buying_power"] < trade_amount and not dry_run:
-        log.warning("Buying power $%.2f is below trade amount $%.2f", summary["buying_power"], trade_amount)
-
-    # --- Fetch trades ---
-    trades = scraper.get_trades(target["politician_id"], days_back=days_back)
-    log.info("Found %d recent trade(s) for %s", len(trades), target["name"])
+    # --- Send check notification ---
+    now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+    target_names = " + ".join(t["name"] for t in targets)
+    notify.send(
+        f"🔍 <b>Checking trades...</b>\n"
+        f"Time: {now_str}\n"
+        f"Watching: {target_names}\n"
+        f"Account equity: ${summary['equity']:,.2f}"
+    )
 
     processed_ids: list = state["processed_trade_ids"]
-    new_trades = [t for t in trades if t["id"] not in processed_ids]
-    log.info("%d are new (not yet copied)", len(new_trades))
+    total_new = 0
 
-    # --- Execute ---
-    for trade in new_trades:
-        ticker = trade["ticker"]
-        action = trade["action"]
-        asset_type = trade["asset_type"]
-        trade_id = trade["id"]
+    # --- Loop over all targets ---
+    for target in targets:
+        name = target["name"]
+        pid = target["politician_id"]
+        party = target["party"]
+        state_abbr = target["state"]
 
-        log.info(
-            "Processing trade %s: %s %s (%s)  filed=%s  traded=%s",
-            trade_id, action.upper(), ticker, asset_type,
-            trade["filed_date"].strftime("%Y-%m-%d"),
-            trade["traded_date"].strftime("%Y-%m-%d"),
-        )
+        log.info("--- Checking %s (%s) ---", name, pid)
+        trades = scraper.get_trades(pid, days_back=days_back)
+        new_trades = [t for t in trades if t["id"] not in processed_ids]
+        log.info("%d new trade(s) for %s", len(new_trades), name)
+        total_new += len(new_trades)
 
-        if asset_type in ("option", "call", "put"):
-            log.warning(
-                "Trade %s is an option — Congress disclosures lack strike/expiry. "
-                "Buying stock %s as proxy.", trade_id, ticker
+        for trade in new_trades:
+            ticker = trade["ticker"]
+            action = trade["action"]
+            asset_type = trade["asset_type"]
+            trade_id = trade["id"]
+
+            log.info(
+                "Processing trade %s: %s %s (%s)  filed=%s",
+                trade_id, action.upper(), ticker, asset_type,
+                trade["filed_date"].strftime("%Y-%m-%d"),
             )
-            # Fall through and treat as stock buy/sell
 
-        result = {}
-        try:
-            if action == "buy":
-                result = trader.buy(client, ticker, trade_amount, dry_run=dry_run)
+            if asset_type in ("option", "call", "put"):
+                log.warning(
+                    "Trade %s is an option — buying stock %s as proxy.", trade_id, ticker
+                )
+
+            result = {}
+            try:
+                if action == "buy":
+                    result = trader.buy(client, ticker, trade_amount, dry_run=dry_run)
+                else:
+                    result = trader.sell_position(client, ticker, dry_run=dry_run)
+            except Exception as exc:
+                log.error("Order failed for %s %s: %s", action, ticker, exc)
+                result = {"status": "error", "error": str(exc)}
+
+            # Telegram notification per trade
+            status = result.get("status", "unknown")
+            politician_tag = f"{name} ({party[0]}-{state_abbr})"
+            if status == "error":
+                msg = (
+                    f"❌ <b>Trade FAILED</b>\n"
+                    f"Politician: {politician_tag}\n"
+                    f"Action: {action.upper()} {ticker}\n"
+                    f"Error: {result.get('error', 'unknown')}"
+                )
+            elif status == "skipped":
+                msg = (
+                    f"⏭ <b>Sell Skipped</b>\n"
+                    f"Politician: {politician_tag}\n"
+                    f"Ticker: {ticker}\n"
+                    f"Reason: no position held"
+                )
             else:
-                result = trader.sell_position(client, ticker, dry_run=dry_run)
-        except Exception as exc:
-            log.error("Order failed for %s %s: %s", action, ticker, exc)
-            result = {"status": "error", "error": str(exc)}
+                emoji = "📈" if action == "buy" else "📉"
+                label = f"BUY ${trade_amount:.0f}" if action == "buy" else "SELL (full position)"
+                msg = (
+                    f"{emoji} <b>Trade Copied!</b>\n"
+                    f"Politician: {politician_tag}\n"
+                    f"Action: {label} <b>{ticker}</b>\n"
+                    f"Filed: {trade['filed_date'].strftime('%Y-%m-%d')}\n"
+                    f"Status: {status}"
+                )
+            notify.send(msg)
 
-        # Send Telegram notification
-        status = result.get("status", "unknown")
-        if status == "error":
-            emoji = "❌"
-            msg = (
-                f"{emoji} <b>Trade FAILED</b>\n"
-                f"Tim Moore: {action.upper()} {ticker}\n"
-                f"Error: {result.get('error', 'unknown')}"
-            )
-        elif status == "skipped":
-            emoji = "⏭"
-            msg = (
-                f"{emoji} <b>Trade Skipped</b>\n"
-                f"Tim Moore: SELL {ticker}\n"
-                f"Reason: no position held"
-            )
-        else:
-            emoji = "📈" if action == "buy" else "📉"
-            label = f"BUY ${trade_amount:.0f}" if action == "buy" else "SELL (full position)"
-            msg = (
-                f"{emoji} <b>Trade Copied!</b>\n"
-                f"Politician: Tim Moore (R-NC)\n"
-                f"Action: {label} <b>{ticker}</b>\n"
-                f"Filed: {trade['filed_date'].strftime('%Y-%m-%d')}\n"
-                f"Status: {status}"
-            )
-        notify.send(msg)
+            processed_ids.append(trade_id)
+            state["trades_executed"].append({
+                "trade_id": trade_id,
+                "politician": name,
+                "ticker": ticker,
+                "action": action,
+                "asset_type": asset_type,
+                "executed_at": datetime.now().isoformat(),
+                "result": result,
+            })
 
-        # Record what we did
-        processed_ids.append(trade_id)
-        state["trades_executed"].append({
-            "trade_id": trade_id,
-            "ticker": ticker,
-            "action": action,
-            "asset_type": asset_type,
-            "executed_at": datetime.now().isoformat(),
-            "result": result,
-        })
+    if total_new == 0:
+        log.info("No new trades found across all targets.")
 
     state["processed_trade_ids"] = processed_ids
     state["last_checked"] = datetime.now().isoformat()
     save_state(state)
-
-    log.info("Done. State saved to %s", STATE_FILE)
+    log.info("Done.")
     log.info("=" * 60)
 
 
