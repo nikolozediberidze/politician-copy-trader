@@ -89,15 +89,16 @@ def run() -> None:
         summary["equity"], summary["cash"], summary["buying_power"],
     )
 
-    # --- Send check notification ---
-    now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
-    target_names = " + ".join(t["name"] for t in targets)
-    notify.send(
-        f"🔍 <b>Checking trades...</b>\n"
-        f"Time: {now_str}\n"
-        f"Watching: {target_names}\n"
-        f"Account equity: ${summary['equity']:,.2f}"
-    )
+    # --- Send check notification (only on 2026-05-11 to verify setup) ---
+    if datetime.now().strftime("%Y-%m-%d") == "2026-05-11":
+        now_str = datetime.now().strftime("%Y-%m-%d %H:%M")
+        target_names = " + ".join(t["name"] for t in targets)
+        notify.send(
+            f"🔍 <b>Checking trades...</b>\n"
+            f"Time: {now_str}\n"
+            f"Watching: {target_names}\n"
+            f"Account equity: ${summary['equity']:,.2f}"
+        )
 
     processed_ids: list = state["processed_trade_ids"]
     total_new = 0
