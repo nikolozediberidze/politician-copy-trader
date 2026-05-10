@@ -18,6 +18,13 @@
       "party": "Democrat",
       "state": "AL",
       "note": "67.9% gain in 2025 — highest return in Congress, tech-focused"
+    },
+    {
+      "name": "Nancy Pelosi",
+      "politician_id": "P000197",
+      "party": "Democrat",
+      "state": "CA",
+      "note": "Most famous Congressional trader — consistently beats the market"
     }
   ],
   "trading": {
