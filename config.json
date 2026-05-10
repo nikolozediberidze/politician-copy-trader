@@ -1,0 +1,19 @@
+{
+  "alpaca": {
+    "base_url": "https://paper-api.alpaca.markets",
+    "api_key": "PK3S2I5WJO5Q4NF2X2YDLXRIPR",
+    "api_secret": "5uXdAaM1GwUn5ktcCsqWqsjrN58JRWqpoh19vx3pqmXn"
+  },
+  "target": {
+    "name": "Tim Moore",
+    "politician_id": "M001236",
+    "party": "Republican",
+    "state": "NC",
+    "note": "52% gain in 2025 with 200+ trades \u00e2\u20ac\u201d most active Congress trader"
+  },
+  "trading": {
+    "trade_amount_usd": 500,
+    "days_lookback": 7,
+    "dry_run": false
+  }
+}

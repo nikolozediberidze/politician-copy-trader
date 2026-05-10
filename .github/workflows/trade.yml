@@ -1,0 +1,39 @@
+name: Politician Copy Trader
+
+on:
+  schedule:
+    - cron: "*/30 * * * 1-5"   # Every 30 min, Mon-Fri only
+  workflow_dispatch:             # Allow manual runs from GitHub UI
+
+jobs:
+  trade:
+    runs-on: ubuntu-latest
+    permissions:
+      contents: write            # Needed to commit state.json back
+
+    steps:
+      - name: Checkout repo
+        uses: actions/checkout@v4
+
+      - name: Set up Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: "pip"
+
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+
+      - name: Run bot
+        env:
+          ALPACA_API_KEY: ${{ secrets.ALPACA_API_KEY }}
+          ALPACA_API_SECRET: ${{ secrets.ALPACA_API_SECRET }}
+        run: python bot.py
+
+      - name: Save state back to repo
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+          git add state.json bot.log
+          git diff --cached --quiet || git commit -m "bot: update state $(date -u +%Y-%m-%dT%H:%M:%SZ)"
+          git push
