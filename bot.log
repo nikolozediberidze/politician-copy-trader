@@ -37,33 +37,83 @@
 2026-05-10 18:38:39,652  INFO      Politician Copy Trader  —  2026-05-10 18:38
 2026-05-10 18:38:40,006  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
 2026-05-10 18:38:40,006  INFO      Market is closed — skipping this run.
-2026-05-11 11:49:07,227  INFO      ============================================================
-2026-05-11 11:49:07,227  INFO      Politician Copy Trader  —  2026-05-11 11:49
-2026-05-11 11:49:07,642  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
-2026-05-11 11:49:07,642  INFO      Market is closed — skipping this run.
-2026-05-11 17:48:45,407  INFO      ============================================================
-2026-05-11 17:48:45,407  INFO      Politician Copy Trader  —  2026-05-11 17:48
-2026-05-11 17:48:45,508  INFO      Market is OPEN. Next open: 2026-05-12 09:30:00-04:00
-2026-05-11 17:48:45,564  INFO      Account: equity=$1018.24  cash=$530.58  buying_power=$188.42
-2026-05-11 17:48:46,145  INFO      Telegram notification sent
-2026-05-11 17:48:46,146  INFO      --- Checking Tim Moore (M001236) ---
-2026-05-11 17:48:46,147  INFO      Fetching Capitol Trades for politician M001236 ...
-2026-05-11 17:48:47,101  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
-2026-05-11 17:48:47,220  INFO      Parsed 50 trades via HTML
-2026-05-11 17:48:47,221  INFO      0 trades are within the last 7 days
-2026-05-11 17:48:47,222  INFO      0 new trade(s) for Tim Moore
-2026-05-11 17:48:47,222  INFO      --- Checking Terri Sewell (S001185) ---
-2026-05-11 17:48:47,222  INFO      Fetching Capitol Trades for politician S001185 ...
-2026-05-11 17:48:47,735  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
-2026-05-11 17:48:47,758  INFO      Parsed 4 trades via HTML
-2026-05-11 17:48:47,758  INFO      0 trades are within the last 7 days
-2026-05-11 17:48:47,759  INFO      0 new trade(s) for Terri Sewell
-2026-05-11 17:48:47,759  INFO      --- Checking Nancy Pelosi (P000197) ---
-2026-05-11 17:48:47,759  INFO      Fetching Capitol Trades for politician P000197 ...
-2026-05-11 17:48:47,909  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
-2026-05-11 17:48:47,986  INFO      Parsed 43 trades via HTML
-2026-05-11 17:48:47,986  INFO      0 trades are within the last 7 days
-2026-05-11 17:48:47,988  INFO      0 new trade(s) for Nancy Pelosi
-2026-05-11 17:48:47,988  INFO      No new trades found across all targets.
-2026-05-11 17:48:47,988  INFO      Done.
-2026-05-11 17:48:47,988  INFO      ============================================================
+2026-05-10 22:54:17,960  INFO      ============================================================
+2026-05-10 22:54:17,961  INFO      Politician Copy Trader  —  2026-05-10 22:54
+2026-05-10 22:54:20,292  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-10 22:54:20,292  INFO      Market is closed — skipping this run.
+2026-05-10 23:09:20,752  INFO      ============================================================
+2026-05-10 23:09:20,753  INFO      Politician Copy Trader  —  2026-05-10 23:09
+2026-05-10 23:09:21,498  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-10 23:09:21,498  INFO      Market is closed — skipping this run.
+2026-05-10 23:29:07,208  INFO      ============================================================
+2026-05-10 23:29:07,208  INFO      Politician Copy Trader  —  2026-05-10 23:29
+2026-05-10 23:29:08,411  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-10 23:29:08,412  INFO      Market is closed — skipping this run.
+2026-05-10 23:32:22,257  INFO      ============================================================
+2026-05-10 23:32:22,257  INFO      Politician Copy Trader  —  2026-05-10 23:32
+2026-05-10 23:32:23,001  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-10 23:32:23,002  INFO      Market is closed — skipping this run.
+2026-05-10 23:39:20,698  INFO      ============================================================
+2026-05-10 23:39:20,698  INFO      Politician Copy Trader  —  2026-05-10 23:39
+2026-05-10 23:39:21,439  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-10 23:39:21,440  INFO      Market is closed — skipping this run.
+2026-05-11 00:55:32,169  INFO      ============================================================
+2026-05-11 00:55:32,169  INFO      Politician Copy Trader  —  2026-05-11 00:55
+2026-05-11 00:55:32,957  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-11 00:55:32,958  INFO      Market is closed — skipping this run.
+2026-05-11 01:02:22,306  INFO      ============================================================
+2026-05-11 01:02:22,306  INFO      Politician Copy Trader  —  2026-05-11 01:02
+2026-05-11 01:02:23,037  INFO      Market is CLOSED. Next open: 2026-05-11 09:30:00-04:00
+2026-05-11 01:02:23,038  INFO      Market is closed — skipping this run.
+2026-05-11 21:52:28,840  INFO      ============================================================
+2026-05-11 21:52:28,841  INFO      Politician Copy Trader  —  2026-05-11 21:52
+2026-05-11 21:52:29,721  INFO      Market is OPEN. Next open: 2026-05-12 09:30:00-04:00
+2026-05-11 21:52:29,904  INFO      Account: equity=$1018.77  cash=$530.58  buying_power=$188.42
+2026-05-11 21:52:29,904  WARNING   Telegram not configured — skipping notification
+2026-05-11 21:52:29,904  INFO      --- Checking Tim Moore (M001236) ---
+2026-05-11 21:52:29,905  INFO      Fetching Capitol Trades for politician M001236 ...
+2026-05-11 21:52:31,553  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:31,666  INFO      Parsed 50 trades via HTML
+2026-05-11 21:52:31,666  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:31,668  INFO      0 new trade(s) for Tim Moore
+2026-05-11 21:52:31,668  INFO      --- Checking Terri Sewell (S001185) ---
+2026-05-11 21:52:31,668  INFO      Fetching Capitol Trades for politician S001185 ...
+2026-05-11 21:52:32,461  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:32,481  INFO      Parsed 4 trades via HTML
+2026-05-11 21:52:32,481  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:32,483  INFO      0 new trade(s) for Terri Sewell
+2026-05-11 21:52:32,483  INFO      --- Checking Nancy Pelosi (P000197) ---
+2026-05-11 21:52:32,483  INFO      Fetching Capitol Trades for politician P000197 ...
+2026-05-11 21:52:33,553  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:33,651  INFO      Parsed 43 trades via HTML
+2026-05-11 21:52:33,651  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:33,653  INFO      0 new trade(s) for Nancy Pelosi
+2026-05-11 21:52:33,653  INFO      No new trades found across all targets.
+2026-05-11 21:52:33,653  INFO      Done.
+2026-05-11 21:52:33,653  INFO      ============================================================
+2026-05-11 21:52:54,516  INFO      ============================================================
+2026-05-11 21:52:54,516  INFO      Politician Copy Trader  —  2026-05-11 21:52
+2026-05-11 21:52:55,258  INFO      Market is OPEN. Next open: 2026-05-12 09:30:00-04:00
+2026-05-11 21:52:55,422  INFO      Account: equity=$1018.75  cash=$530.58  buying_power=$188.42
+2026-05-11 21:52:55,977  INFO      Telegram notification sent
+2026-05-11 21:52:55,978  INFO      --- Checking Tim Moore (M001236) ---
+2026-05-11 21:52:55,978  INFO      Fetching Capitol Trades for politician M001236 ...
+2026-05-11 21:52:56,613  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:56,703  INFO      Parsed 50 trades via HTML
+2026-05-11 21:52:56,703  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:56,704  INFO      0 new trade(s) for Tim Moore
+2026-05-11 21:52:56,705  INFO      --- Checking Terri Sewell (S001185) ---
+2026-05-11 21:52:56,705  INFO      Fetching Capitol Trades for politician S001185 ...
+2026-05-11 21:52:57,230  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:57,255  INFO      Parsed 4 trades via HTML
+2026-05-11 21:52:57,255  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:57,257  INFO      0 new trade(s) for Terri Sewell
+2026-05-11 21:52:57,257  INFO      --- Checking Nancy Pelosi (P000197) ---
+2026-05-11 21:52:57,257  INFO      Fetching Capitol Trades for politician P000197 ...
+2026-05-11 21:52:57,982  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-11 21:52:58,103  INFO      Parsed 43 trades via HTML
+2026-05-11 21:52:58,104  INFO      0 trades are within the last 7 days
+2026-05-11 21:52:58,105  INFO      0 new trade(s) for Nancy Pelosi
+2026-05-11 21:52:58,106  INFO      No new trades found across all targets.
+2026-05-11 21:52:58,106  INFO      Done.
+2026-05-11 21:52:58,107  INFO      ============================================================
