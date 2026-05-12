@@ -151,3 +151,29 @@
 2026-05-12 08:13:28,425  INFO      Politician Copy Trader  —  2026-05-12 08:13
 2026-05-12 08:13:28,916  INFO      Market is CLOSED. Next open: 2026-05-12 09:30:00-04:00
 2026-05-12 08:13:28,916  INFO      Market is closed — skipping this run.
+2026-05-12 16:38:29,688  INFO      ============================================================
+2026-05-12 16:38:29,689  INFO      Politician Copy Trader  —  2026-05-12 16:38
+2026-05-12 16:38:30,086  INFO      Market is OPEN. Next open: 2026-05-13 09:30:00-04:00
+2026-05-12 16:38:30,128  INFO      Account: equity=$1000.66  cash=$530.58  buying_power=$188.42
+2026-05-12 16:38:30,500  INFO      Telegram notification sent
+2026-05-12 16:38:30,501  INFO      --- Checking Tim Moore (M001236) ---
+2026-05-12 16:38:30,502  INFO      Fetching Capitol Trades for politician M001236 ...
+2026-05-12 16:38:31,403  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-12 16:38:31,507  INFO      Parsed 50 trades via HTML
+2026-05-12 16:38:31,507  INFO      0 trades are within the last 7 days
+2026-05-12 16:38:31,508  INFO      0 new trade(s) for Tim Moore
+2026-05-12 16:38:31,508  INFO      --- Checking Terri Sewell (S001185) ---
+2026-05-12 16:38:31,508  INFO      Fetching Capitol Trades for politician S001185 ...
+2026-05-12 16:38:32,020  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-12 16:38:32,034  INFO      Parsed 4 trades via HTML
+2026-05-12 16:38:32,034  INFO      0 trades are within the last 7 days
+2026-05-12 16:38:32,035  INFO      0 new trade(s) for Terri Sewell
+2026-05-12 16:38:32,035  INFO      --- Checking Nancy Pelosi (P000197) ---
+2026-05-12 16:38:32,035  INFO      Fetching Capitol Trades for politician P000197 ...
+2026-05-12 16:38:32,740  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-12 16:38:32,802  INFO      Parsed 43 trades via HTML
+2026-05-12 16:38:32,802  INFO      0 trades are within the last 7 days
+2026-05-12 16:38:32,803  INFO      0 new trade(s) for Nancy Pelosi
+2026-05-12 16:38:32,803  INFO      No new trades found across all targets.
+2026-05-12 16:38:32,804  INFO      Done.
+2026-05-12 16:38:32,804  INFO      ============================================================
