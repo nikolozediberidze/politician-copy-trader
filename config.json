@@ -1,8 +1,6 @@
 {
   "alpaca": {
-    "base_url": "https://paper-api.alpaca.markets",
-    "api_key": "PK3S2I5WJO5Q4NF2X2YDLXRIPR",
-    "api_secret": "5uXdAaM1GwUn5ktcCsqWqsjrN58JRWqpoh19vx3pqmXn"
+    "base_url": "https://paper-api.alpaca.markets"
   },
   "targets": [
     {
@@ -27,10 +25,6 @@
       "note": "Most famous Congressional trader — consistently beats the market"
     }
   ],
-  "telegram": {
-    "token": "8746472079:AAHGAGk-uEDeUWjf8aj6HWB3RbBcPvIf7Zk",
-    "chat_id": "910889399"
-  },
   "trading": {
     "trade_amount_usd": 100,
     "days_lookback": 7,

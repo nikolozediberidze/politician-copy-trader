@@ -14,6 +14,9 @@ import sys
 from datetime import datetime
 from pathlib import Path
 
+from dotenv import load_dotenv
+load_dotenv()  # loads .env for local runs; GitHub Actions uses Secrets
+
 import scraper
 import trader
 import notify
@@ -62,10 +65,8 @@ def run() -> None:
     targets = cfg["targets"]
     trading_cfg = cfg["trading"]
 
-    if os.environ.get("ALPACA_API_KEY"):
-        alpaca_cfg["api_key"] = os.environ["ALPACA_API_KEY"]
-    if os.environ.get("ALPACA_API_SECRET"):
-        alpaca_cfg["api_secret"] = os.environ["ALPACA_API_SECRET"]
+    alpaca_cfg["api_key"] = os.environ.get("ALPACA_API_KEY", alpaca_cfg.get("api_key", ""))
+    alpaca_cfg["api_secret"] = os.environ.get("ALPACA_API_SECRET", alpaca_cfg.get("api_secret", ""))
 
     dry_run: bool = os.environ.get("DRY_RUN", "").lower() == "true" or trading_cfg.get("dry_run", False)
     trade_amount: float = float(os.environ.get("TRADE_AMOUNT_USD", trading_cfg.get("trade_amount_usd", 100)))

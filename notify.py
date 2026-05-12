@@ -3,6 +3,8 @@
 import logging
 import os
 import requests
+from dotenv import load_dotenv
+load_dotenv()
 
 log = logging.getLogger(__name__)
 
@@ -25,8 +27,6 @@ def _load_from_config() -> tuple[str, str]:
 def send(message: str) -> None:
     token = os.environ.get("TELEGRAM_TOKEN")
     chat_id = os.environ.get("TELEGRAM_CHAT_ID")
-    if not token or not chat_id:
-        token, chat_id = _load_from_config()
     if not token or not chat_id:
         log.warning("Telegram not configured — skipping notification")
         return
