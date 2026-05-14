@@ -1175,3 +1175,29 @@
 2026-05-14 16:30:42,106  INFO      No new trades found across all targets.
 2026-05-14 16:30:42,106  INFO      Done.
 2026-05-14 16:30:42,106  INFO      ============================================================
+2026-05-14 17:00:56,160  INFO      ============================================================
+2026-05-14 17:00:56,160  INFO      Politician Copy Trader  —  2026-05-14 17:00
+2026-05-14 17:00:56,210  INFO      Market is OPEN. Next open: 2026-05-15 09:30:00-04:00
+2026-05-14 17:00:56,222  INFO      Account: equity=$1024.50  cash=$530.58  buying_power=$188.42
+2026-05-14 17:00:56,664  INFO      Telegram notification sent
+2026-05-14 17:00:56,665  INFO      --- Checking Tim Moore (M001236) ---
+2026-05-14 17:00:56,665  INFO      Fetching Capitol Trades for politician M001236 ...
+2026-05-14 17:00:57,343  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-14 17:00:57,449  INFO      Parsed 50 trades via HTML
+2026-05-14 17:00:57,449  INFO      0 trades are within the last 7 days
+2026-05-14 17:00:57,450  INFO      0 new trade(s) for Tim Moore
+2026-05-14 17:00:57,451  INFO      --- Checking Terri Sewell (S001185) ---
+2026-05-14 17:00:57,451  INFO      Fetching Capitol Trades for politician S001185 ...
+2026-05-14 17:00:57,684  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-14 17:00:57,698  INFO      Parsed 4 trades via HTML
+2026-05-14 17:00:57,698  INFO      0 trades are within the last 7 days
+2026-05-14 17:00:57,699  INFO      0 new trade(s) for Terri Sewell
+2026-05-14 17:00:57,699  INFO      --- Checking Nancy Pelosi (P000197) ---
+2026-05-14 17:00:57,699  INFO      Fetching Capitol Trades for politician P000197 ...
+2026-05-14 17:00:58,338  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-14 17:00:58,401  INFO      Parsed 43 trades via HTML
+2026-05-14 17:00:58,401  INFO      0 trades are within the last 7 days
+2026-05-14 17:00:58,402  INFO      0 new trade(s) for Nancy Pelosi
+2026-05-14 17:00:58,402  INFO      No new trades found across all targets.
+2026-05-14 17:00:58,403  INFO      Done.
+2026-05-14 17:00:58,403  INFO      ============================================================
