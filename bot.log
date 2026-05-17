@@ -1867,3 +1867,7 @@
 2026-05-17 21:00:41,540  INFO      Politician Copy Trader  —  2026-05-17 21:00
 2026-05-17 21:00:41,743  INFO      Market is CLOSED. Next open: 2026-05-18 09:30:00-04:00
 2026-05-17 21:00:41,743  INFO      Market is closed — skipping this run.
+2026-05-17 21:30:32,860  INFO      ============================================================
+2026-05-17 21:30:32,860  INFO      Politician Copy Trader  —  2026-05-17 21:30
+2026-05-17 21:30:33,086  INFO      Market is CLOSED. Next open: 2026-05-18 09:30:00-04:00
+2026-05-17 21:30:33,086  INFO      Market is closed — skipping this run.
