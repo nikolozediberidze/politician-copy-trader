@@ -1999,3 +1999,29 @@
 2026-05-18 13:00:43,445  INFO      Politician Copy Trader  —  2026-05-18 13:00
 2026-05-18 13:00:43,938  INFO      Market is CLOSED. Next open: 2026-05-18 09:30:00-04:00
 2026-05-18 13:00:43,938  INFO      Market is closed — skipping this run.
+2026-05-18 13:30:38,905  INFO      ============================================================
+2026-05-18 13:30:38,905  INFO      Politician Copy Trader  —  2026-05-18 13:30
+2026-05-18 13:30:39,227  INFO      Market is OPEN. Next open: 2026-05-19 09:30:00-04:00
+2026-05-18 13:30:39,284  INFO      Account: equity=$995.28  cash=$530.58  buying_power=$188.42
+2026-05-18 13:30:39,699  INFO      Telegram notification sent
+2026-05-18 13:30:39,700  INFO      --- Checking Tim Moore (M001236) ---
+2026-05-18 13:30:39,700  INFO      Fetching Capitol Trades for politician M001236 ...
+2026-05-18 13:30:40,551  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-18 13:30:40,671  INFO      Parsed 50 trades via HTML
+2026-05-18 13:30:40,671  INFO      0 trades are within the last 7 days
+2026-05-18 13:30:40,672  INFO      0 new trade(s) for Tim Moore
+2026-05-18 13:30:40,672  INFO      --- Checking Terri Sewell (S001185) ---
+2026-05-18 13:30:40,672  INFO      Fetching Capitol Trades for politician S001185 ...
+2026-05-18 13:30:41,189  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-18 13:30:41,204  INFO      Parsed 4 trades via HTML
+2026-05-18 13:30:41,204  INFO      0 trades are within the last 7 days
+2026-05-18 13:30:41,205  INFO      0 new trade(s) for Terri Sewell
+2026-05-18 13:30:41,206  INFO      --- Checking Nancy Pelosi (P000197) ---
+2026-05-18 13:30:41,206  INFO      Fetching Capitol Trades for politician P000197 ...
+2026-05-18 13:30:41,976  INFO      __NEXT_DATA__ not found — falling back to HTML parsing
+2026-05-18 13:30:42,049  INFO      Parsed 43 trades via HTML
+2026-05-18 13:30:42,049  INFO      0 trades are within the last 7 days
+2026-05-18 13:30:42,050  INFO      0 new trade(s) for Nancy Pelosi
+2026-05-18 13:30:42,050  INFO      No new trades found across all targets.
+2026-05-18 13:30:42,051  INFO      Done.
+2026-05-18 13:30:42,051  INFO      ============================================================
